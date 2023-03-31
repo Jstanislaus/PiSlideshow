@@ -122,7 +122,20 @@ def move():
 # calling the function
 i=0
 while True:
-
-    move()
-    win.mainloop()
+    if x == count+1:
+        x = 1
+    else:
+        l.config(image=imgarray[x-1])
+    x = x+1
+    totalcount+=1
+    if totalcount%10==9:
+        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ PiSlideshow",shell =True) 
+        gpout1=gpout.wait()
+        #need to update label here also
+        imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
+        win.after(800+300)#imgarray,countarray
+        #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
+    else:
+        win.after(800+300) 
+win.mainloop()
     i+=1
