@@ -107,7 +107,7 @@ def move():
     else:
         l.config(image=imgarray[x-1])
     x = x+1
-    win.after(800+speed, move())  
+    win.after(800+speed, move)  
 # calling the function
 i=0
 while True:
