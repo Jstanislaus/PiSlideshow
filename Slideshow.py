@@ -104,6 +104,7 @@ totalcount=1
 def move(path,screen_width,screen_height,win,countarray):
     global x
     global totalcount
+    print("TEST")
     if x == count+1:
         x = 1
     else:
