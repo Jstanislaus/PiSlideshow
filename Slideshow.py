@@ -24,7 +24,7 @@ win.geometry(str(screen_width)+"x"+str(screen_height))
 #resize
 #######
 #find divisor
-#path = "C:/Users/Jacob_5zx0h5z/Desktop/29er stuff/Slideshow"
+#path = "/home/pi64/Slideshow"
 path = input("Please give the directory location of your files")
 print("Resizing photos...")
 dir_list = os.listdir(path)
