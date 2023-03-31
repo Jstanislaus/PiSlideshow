@@ -102,7 +102,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 x=1
 totalcount=1
-def move(imgarray,countarray):
+def move():
     global x
     global totalcount
     print(x)
@@ -119,12 +119,12 @@ def move(imgarray,countarray):
         gpout1=gpout.wait()
         #need to update label here also
         imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
-        win.after(800+300,move(imgarray,countarray))#imgarray,countarray
+        win.after(800+300,move())#imgarray,countarray
         #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
         
     else:
-        win.after(800+300, move(imgarray,countarray))
+        win.after(800+300, move())
 # calling the function
 while True:
-    move(imgarray,countarray)
+    move()
     win.mainloop()
