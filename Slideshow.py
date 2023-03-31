@@ -13,9 +13,7 @@ monthdic = { "Jan":"01","Feb":"02", "Mar": "03","Apr":"04", "May":"05", "Jun":"0
  "Sep":"09",  "Oct":"10", "Nov": "11", "Dec":"12"}
 # adjust window
 win=tk.Tk()
-
 # loading the images
-
  
 screen_width = win.winfo_screenwidth()
 screen_height = win.winfo_screenheight()
@@ -24,10 +22,25 @@ win.geometry(str(screen_width)+"x"+str(screen_height))
 #resize
 #######
 #find divisor
-path = "/home/pi64/PiSlideshow"
+path = "/home/pi64/PiSlideshow/Slideshow"
 #path = input("Please give the directory location of your files")
 print("Resizing photos...")
 dir_list = os.listdir(path)
+
+    
+          
+            
+    
+
+          
+          
+            
+    
+
+          
+    
+    @@ -115,7 +115,7 @@ def move():
+  
 imgarray = []
 countarray =[]
 def updatepics(path,screen_width,screen_height,win,countarray):    
@@ -85,7 +98,6 @@ l.pack()
 #os.system('cls' if os.name == 'nt' else 'clear')
 print("Checking files...")
 #find number of files that will be in slideshow
-
 def find_all(dir_list):
     counter = 0
     for i in range(0,len(dir_list)):
@@ -94,7 +106,6 @@ def find_all(dir_list):
         else:
             pass
     return counter
-
 count = find_all(dir_list)
 print(count)
 os.system('cls' if os.name == 'nt' else 'clear')
@@ -102,12 +113,12 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 x=1
 totalcount=1
-def move(imgarray,countarray):
+def move():
     global x
     global totalcount
     print(x)
     print("Hi")
-    #print(len(imgarray))
+    print(len(imgarray))
     if x == count+1:
         x = 1
     else:
@@ -115,15 +126,14 @@ def move(imgarray,countarray):
     x = x+1
     totalcount+=1
     if totalcount%10==9:
-        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ PiSlideshow",shell =True) 
+        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow",shell =True) 
         gpout1=gpout.wait()
         #need to update label here also
-        win.after(800+300,move(imgarray,countarray))#imgarray,countarray
-        #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
-        
+        win.after(800+300,updatepics(path,screen_width,screen_height,win,countarray))
+        move()
     else:
-        win.after(800+300, move(imgarray,countarray))
+        win.after(800+300, move)
 # calling the function
 while True:
-    move(imgarray,countarray)
+    move()
     win.mainloop()
