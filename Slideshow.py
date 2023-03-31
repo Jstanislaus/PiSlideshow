@@ -45,7 +45,7 @@ def updatepics(path,screen_width,screen_height,win,countarray):
                 img = ImageTk.PhotoImage(resized_image)
                 imgarray.append(img)
                 countarray.append(dir_list[i])
-                return imgarray,countarray
+    return imgarray,countarray
 imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
 #check current date
 try:
@@ -82,7 +82,7 @@ except:
     pass
 l=Label()
 l.pack()
-os.system('cls' if os.name == 'nt' else 'clear')
+#os.system('cls' if os.name == 'nt' else 'clear')
 print("Checking files...")
 #find number of files that will be in slideshow
 
