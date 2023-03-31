@@ -111,7 +111,7 @@ def move():
     l.config(image=imgarray[x-1])
     x = x+1
     totalcount+=1
-    if totalcount%10=9:
+    if totalcount%10==9:
         gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow") 
         gpout1=gpout.wait()
         #need to update label here also
