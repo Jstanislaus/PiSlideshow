@@ -110,8 +110,8 @@ def move(path,screen_width,screen_height,win,countarray):
         l.config(image=imgarray[x-1])
     x = x+1
     totalcount+=1
-    if totalcount %10 ==4:
-        imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
+    #if totalcount %10 ==4:
+        #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
     win.after(800+speed, move(path,screen_width,screen_height,win,countarray))  
 # calling the function
 i=0
