@@ -120,7 +120,6 @@ def move():
     else:
         win.after(800+300, move)  
 # calling the function
-i=0
 while True:
     if x == count+1:
         x = 1
@@ -138,4 +137,3 @@ while True:
     else:
         win.after(800+300) 
 win.mainloop()
-    i+=1
