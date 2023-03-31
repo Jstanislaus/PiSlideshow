@@ -107,7 +107,7 @@ def move():
     global totalcount
     print(x)
     print("Hi")
-    print(len(imgarray))
+    #print(len(imgarray))
     if x == count+1:
         x = 1
     else:
