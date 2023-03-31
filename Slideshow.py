@@ -27,20 +27,6 @@ path = "/home/pi64/PiSlideshow/Slideshow"
 print("Resizing photos...")
 dir_list = os.listdir(path)
 
-    
-          
-            
-    
-
-          
-          
-            
-    
-
-          
-    
-    @@ -115,7 +115,7 @@ def move():
-  
 imgarray = []
 countarray =[]
 def updatepics(path,screen_width,screen_height,win,countarray):    
