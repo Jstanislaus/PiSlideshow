@@ -105,6 +105,7 @@ totalcount=1
 def move():
     global x
     global totalcount
+    global imgarray
     print(x)
     print("Hi")
     #print(len(imgarray))
