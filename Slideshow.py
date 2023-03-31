@@ -8,6 +8,7 @@ import os.path
 import datetime
 import time
 from datetime import date
+import RPi.GPIO as GPIO, time, os, subprocess,shlex
 monthdic = { "Jan":"01","Feb":"02", "Mar": "03","Apr":"04", "May":"05", "Jun":"06", "Jul":"07", "Aug":"08",
  "Sep":"09",  "Oct":"10", "Nov": "11", "Dec":"12"}
 # adjust window
@@ -15,6 +16,7 @@ win=tk.Tk()
 
 # loading the images
 
+ 
 screen_width = win.winfo_screenwidth()
 screen_height = win.winfo_screenheight()
 win.geometry(str(screen_width)+"x"+str(screen_height))
@@ -27,18 +29,24 @@ path = input("Please give the directory location of your files")
 print("Resizing photos...")
 dir_list = os.listdir(path)
 imgarray = []
-for i in range(0,len(dir_list)):
-    if dir_list[i][-3:]=="jpg" or dir_list[i][-3:]=="JPG" or dir_list[i][-3:]=="PNG" or dir_list[i][-3:]=="png":
-        img = Image.open(str(dir_list[i]))
-        w,h = img.size
-        ratio = h/w
-        if ratio > 1:
-            resized_image = img.resize((int(screen_width),int(ratio * screen_width)))
-        else:
-            ratio = w/h
-            resized_image = img.resize((int(screen_height * ratio),int(screen_height)))
-        img = ImageTk.PhotoImage(resized_image)
-        imgarray.append(img)
+countarray =[]
+def updatepics(path,screen_width,screen_height,win,countarray):    
+    for i in range(0,len(dir_list)):
+        if dir_list[i] not in countarray:
+            if dir_list[i][-3:]=="jpg" or dir_list[i][-3:]=="JPG" or dir_list[i][-3:]=="PNG" or dir_list[i][-3:]=="png":
+                img = Image.open(str(dir_list[i]))
+                w,h = img.size
+                ratio = h/w
+                if ratio > 1:
+                    resized_image = img.resize((int(screen_width),int(ratio * screen_width)))
+                else:
+                    ratio = w/h
+                    resized_image = img.resize((int(screen_height * ratio),int(screen_height)))
+                img = ImageTk.PhotoImage(resized_image)
+                imgarray.append(img)
+                countarray.append(dir_list[i])
+                return imgarray,countarray
+imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
 #check current date
 try:
     modified_time = os.path.getmtime(path+"/"+dir_list[0])
@@ -93,14 +101,24 @@ os.system('cls' if os.name == 'nt' else 'clear')
 speed = int(input("How quickly would you like to run the photos? (out of 10 from fast to slow)"))
 speed = speed*250
 x=1
+totalcount=1
 def move():
     global x
+    global totalcount
     if x == count+1:
         x = 1
-    else:
-        l.config(image=imgarray[x-1])
+#    else:
+    l.config(image=imgarray[x-1])
     x = x+1
-    win.after(800+speed, move)  
+    totalcount+=1
+    if totalcount%10=9:
+        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow") 
+        gpout1=gpout.wait()
+        #need to update label here also
+        win.after(800+speed,updatepics)
+        move()
+    else:
+        win.after(800+speed, move)
 # calling the function
 while True:
     move()
