@@ -28,19 +28,24 @@ path = "/home/pi64/Photos/Slideshow"
 print("Resizing photos...")
 dir_list = os.listdir(path)
 imgarray = []
-for i in range(0,len(dir_list)):
-    if dir_list[i][-3:]=="jpg" or dir_list[i][-3:]=="JPG" or dir_list[i][-3:]=="PNG" or dir_list[i][-3:]=="png":
-        img = Image.open(str(dir_list[i]))
-        w,h = img.size
-        ratio = h/w
-        if ratio > 1:
-            resized_image = img.resize((int(screen_width),int(ratio * screen_width)))
-        else:
-            ratio = w/h
-            resized_image = img.resize((int(screen_height * ratio),int(screen_height)))
-        img = ImageTk.PhotoImage(resized_image)
-        imgarray.append(img)
-#check current date
+countarray =[]
+def updatepics(path,screen_width,screen_height,win,countarray):    
+    for i in range(0,len(dir_list)):
+        if dir_list[i] not in countarray:
+            if dir_list[i][-3:]=="jpg" or dir_list[i][-3:]=="JPG" or dir_list[i][-3:]=="PNG" or dir_list[i][-3:]=="png":
+                img = Image.open(str(dir_list[i]))
+                w,h = img.size
+                ratio = h/w
+                if ratio > 1:
+                    resized_image = img.resize((int(screen_width),int(ratio * screen_width)))
+                else:
+                    ratio = w/h
+                    resized_image = img.resize((int(screen_height * ratio),int(screen_height)))
+                img = ImageTk.PhotoImage(resized_image)
+                imgarray.append(img)
+                countarray.append(dir_list[i])
+    return imgarray,countarray
+imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
 try:
     modified_time = os.path.getmtime(path+"/"+dir_list[0])
     convert_time = time.ctime(modified_time)
