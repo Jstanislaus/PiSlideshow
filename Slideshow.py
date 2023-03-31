@@ -23,7 +23,7 @@ win.geometry(str(screen_width)+"x"+str(screen_height))
 #resize
 #######
 #find divisor
-path = "/home/pi64/PiSlideshow"
+path = "/home/pi64/Photos/Slideshow"
 #path = input("Please give the directory location of your files")
 print("Resizing photos...")
 dir_list = os.listdir(path)
@@ -100,21 +100,23 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 speed = 900
 x=1
-def move():
+def move(imgarray):
     global x
-    print("TEST")
     if x == count+1:
         x = 1
     else:
         l.config(image=imgarray[x-1])
     x = x+1
-    #totalcount+=1
-    #if totalcount %10 ==4:
-        #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
-    win.after(800+speed, move())  
+    win.after(800+speed, move(imgarray))  
 # calling the function
-#i=0
+i=0
 while True:
-    move()
+    #if i%50 == 5:
+        #cmdline = "rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow" 
+        #args = shlex.split(cmdline)
+        #print(args)
+        #time.sleep(0.2)
+        #print(shlex.split("stanislaus"))
+    move(imgarray)
     win.mainloop()
-#    i+=1
+    i+=1
