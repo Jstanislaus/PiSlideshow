@@ -100,14 +100,14 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 speed = 900
 x=1
-def move():
+def move(imgarray):
     global x
     if x == count+1:
         x = 1
     else:
         l.config(image=imgarray[x-1])
     x = x+1
-    win.after(800+speed, move)  
+    win.after(800+speed, move(imgarray))  
 # calling the function
 i=0
 while True:
@@ -117,6 +117,6 @@ while True:
         #print(args)
         #time.sleep(0.2)
         #print(shlex.split("stanislaus"))
-    move()
+    move(imgarray)
     win.mainloop()
     i+=1
