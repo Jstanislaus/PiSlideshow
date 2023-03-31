@@ -122,7 +122,7 @@ def move(imgarray,countarray):
         imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
         move(imgarray,countarray)
     else:
-        win.after(800+300, move)
+        win.after(800+300, move(imgarray,countarray))
 # calling the function
 while True:
     move(imgarray,countarray)
