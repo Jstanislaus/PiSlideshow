@@ -121,7 +121,7 @@ def move():
         win.after(800+300,updatepics)
         move()
     else:
-        win.after(800+speed, move)
+        win.after(800+300, move)
 # calling the function
 while True:
     move()
