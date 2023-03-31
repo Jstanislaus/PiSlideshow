@@ -102,7 +102,7 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 x=1
 totalcount=1
-def move():
+def move(imgarray,countarray):
     global x
     global totalcount
     print(x)
@@ -118,12 +118,12 @@ def move():
         gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ PiSlideshow",shell =True) 
         gpout1=gpout.wait()
         #need to update label here also
-        win.after(800+300,move())#imgarray,countarray
-        imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
+        win.after(800+300,move(imgarray,countarray))#imgarray,countarray
+        #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
         
     else:
-        win.after(800+300, move())
+        win.after(800+300, move(imgarray,countarray))
 # calling the function
 while True:
-    move()
+    move(imgarray,countarray)
     win.mainloop()
