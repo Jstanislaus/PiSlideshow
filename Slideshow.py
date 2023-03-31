@@ -118,7 +118,7 @@ def move():
         gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow",shell =True) 
         gpout1=gpout.wait()
         #need to update label here also
-        win.after(800+300,updatepics)
+        win.after(800+300,updatepics(path,screen_width,screen_height,win,countarray))
         move()
     else:
         win.after(800+300, move)
