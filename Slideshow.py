@@ -106,12 +106,12 @@ def move():
 # calling the function
 i=0
 while True:
-    if i%50 == 5:
-        cmdline = "rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow" 
-        args = shlex.split(cmdline)
-        print(args)
-        time.sleep(0.2)
-        print(shlex.split("stanislaus"))
+    #if i%50 == 5:
+        #cmdline = "rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow" 
+        #args = shlex.split(cmdline)
+        #print(args)
+        #time.sleep(0.2)
+        #print(shlex.split("stanislaus"))
     move()
     win.mainloop()
     i+=1
