@@ -24,7 +24,7 @@ win.geometry(str(screen_width)+"x"+str(screen_height))
 #resize
 #######
 #find divisor
-path = "/home/pi64/PiSlideshow/Slideshow"
+path = "/home/pi64/PiSlideshow"
 #path = input("Please give the directory location of your files")
 print("Resizing photos...")
 dir_list = os.listdir(path)
@@ -115,7 +115,7 @@ def move():
     x = x+1
     totalcount+=1
     if totalcount%10==9:
-        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow",shell =True) 
+        gpout = subprocess.Popen("rsync -avz -e ssh pi@192.168.1.155:PiSlideshow/ Slideshow",shell =True) 
         gpout1=gpout.wait()
         #need to update label here also
         win.after(800+300,updatepics(path,screen_width,screen_height,win,countarray))
