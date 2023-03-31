@@ -100,23 +100,21 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 speed = 900
 x=1
-totalcount=1
-def move(path,screen_width,screen_height,win,countarray):
+def move():
     global x
-    global totalcount
     print("TEST")
     if x == count+1:
         x = 1
     else:
         l.config(image=imgarray[x-1])
     x = x+1
-    totalcount+=1
+    #totalcount+=1
     #if totalcount %10 ==4:
         #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
-    win.after(800+speed, move(path,screen_width,screen_height,win,countarray))  
+    win.after(800+speed, move())  
 # calling the function
 i=0
 while True:
-    move(path,screen_width,screen_height,win,countarray)
+    move()
     win.mainloop()
     i+=1
