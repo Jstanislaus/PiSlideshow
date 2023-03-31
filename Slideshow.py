@@ -107,8 +107,8 @@ def move():
     global totalcount
     if x == count+1:
         x = 1
-#    else:
-    l.config(image=imgarray[x-1])
+    else:
+        l.config(image=imgarray[x-1])
     x = x+1
     totalcount+=1
     if totalcount%10==9:
