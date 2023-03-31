@@ -100,23 +100,22 @@ os.system('cls' if os.name == 'nt' else 'clear')
 #speed = speed*250
 speed = 900
 x=1
-def move():
+totalcount=1
+def move(path,screen_width,screen_height,win,countarray):
     global x
+    global totalcount
     if x == count+1:
         x = 1
     else:
         l.config(image=imgarray[x-1])
     x = x+1
-    win.after(800+speed, move)  
+    totalcount+=1
+    if totalcount %10 ==4:
+        imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
+    win.after(800+speed, move(path,screen_width,screen_height,win,countarray))  
 # calling the function
 i=0
 while True:
-    #if i%50 == 5:
-        #cmdline = "rsync -avz -e ssh pi@192.168.1.155:Slideshow/ Slideshow" 
-        #args = shlex.split(cmdline)
-        #print(args)
-        #time.sleep(0.2)
-        #print(shlex.split("stanislaus"))
-    move()
+    move(path,screen_width,screen_height,win,countarray)
     win.mainloop()
     i+=1
