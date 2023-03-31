@@ -132,8 +132,8 @@ while True:
         gpout1=gpout.wait()
         #need to update label here also
         imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
-        win.after(800+300)#imgarray,countarray
+        time.sleep(1.2)#imgarray,countarray
         #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
     else:
-        win.after(800+300) 
+        time.sleep(1.2)
 win.mainloop()
