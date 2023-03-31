@@ -98,13 +98,16 @@ def find_all(dir_list):
 count = find_all(dir_list)
 print(count)
 os.system('cls' if os.name == 'nt' else 'clear')
-speed = int(input("How quickly would you like to run the photos? (out of 10 from fast to slow)"))
-speed = speed*250
+#speed = int(input("How quickly would you like to run the photos? (out of 10 from fast to slow)"))
+#speed = speed*250
 x=1
 totalcount=1
 def move():
     global x
     global totalcount
+    print(x)
+    print("Hi")
+    print(len(imgarray))
     if x == count+1:
         x = 1
     else:
