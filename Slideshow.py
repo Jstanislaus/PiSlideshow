@@ -113,8 +113,8 @@ def move():
         #imgarray, countarray = updatepics(path,screen_width,screen_height,win,countarray)
     win.after(800+speed, move())  
 # calling the function
-i=0
+#i=0
 while True:
     move()
     win.mainloop()
-    i+=1
+#    i+=1
